@@ -53,7 +53,7 @@ class CustomCursor {
     }
 
     _audioCursor(e) {
-        if (e.target.closest(".audio") && e.target !== document.getElementsByTagName('audio')[0]) {
+        if (e.target.closest(".audio") && e.target.tagName !== 'AUDIO') {
             if (e.target.closest(".audio").querySelector("audio").paused) {
                 this._cursor.classList.add('play');
                 this._cursor.classList.remove('pause');
@@ -236,16 +236,36 @@ class BlobItem {
 new BlobItem();
 
 
-// class Scroll {
-//     constructor() {
-//         gsap.registerPlugin(ScrollTrigger, ScrollSmoother)
-//
-//         ScrollSmoother.create({
-//             wrapper: '.wrapper',
-//             content: '.content',
-//             smooth: 1.5
-//         })
-//     }
-// }
-//
-// new Scroll();
+class Scroll {
+    constructor() {
+        SmoothScroll({
+            // Время скролла 400 = 0.4 секунды
+            animationTime : 800,
+            // Размер шага в пикселях
+            stepSize : 75,
+
+            // Дополнительные настройки:
+
+            // Ускорение
+            accelerationDelta : 30,
+            // Максимальное ускорение
+            accelerationMax : 2,
+
+            // Поддержка клавиатуры
+            keyboardSupport : true,
+            // Шаг скролла стрелками на клавиатуре в пикселях
+            arrowScroll : 50,
+
+            // Pulse (less tweakable)
+            // ratio of "tail" to "acceleration"
+            pulseAlgorithm : true,
+            pulseScale : 4,
+            pulseNormalize : 1,
+
+            // Поддержка тачпада
+            touchpadSupport : true,
+        })
+    }
+}
+
+new Scroll();
