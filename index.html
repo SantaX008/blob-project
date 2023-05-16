@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Follow you</title>
+	<link rel="preconnect" href="https://fonts.gstatic.com" />
+	<link href="https://fonts.googleapis.com/css2?family=Lora:wght@700&amp;family=Roboto:wght@300;400&amp;display=swap"
+		rel="stylesheet" />
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+<div class="cursor is-hidden" data-cursor>
+  <span></span>
+</div>
+
+<div class="wrapper">
+
+	<div class="content">
+
+	<div class='container'>
+		<div class="block">
+			<h2>Поведение курсора для кнопки</h2>
+
+			<span class="blob-item blob-item-decorate">
+				<span>ВЕБ ДИЗАЙН</span>
+				<span class="blob-effect"></span>
+			</span>
+
+			<span class="blob-item blob-item-decorate" data-scale-slow>
+				<span>UX/UI</span>
+				<span class="blob-effect"></span>
+			</span>
+
+			<span class="blob-item blob-item-decorate" data-delay="0.1">
+			 <span>ГРАФИЧЕСКИЙ дизайн</span>
+			 <span class="blob-effect"></span>
+			</span>
+
+			<span class="blob-item blob-item-decorate">
+				<span>3d</span>
+			 <span class="blob-effect"></span>
+			</span>
+
+			<span class="blob-item blob-item-decorate">
+				<span>Анимация</span>
+				<span class="blob-effect"></span>
+			</span>
+		</div>
+
+		<section class="block">
+			<h2>Поведение курсора для кнопки с рамкой</h2>
+			<button class='blob-item blob-item-decorate'>
+				<span>Начать проект</span>
+				<span class="blob-effect"></span>
+			</button>
+		</section>
+
+		<section class="block">
+			<h2>Поведение курсора для видео плеера</h2>
+
+			<video class='video' autoplay='autoplay' muted="muted" loop>
+				<source src='video.mp4' type='video/mp4'>
+				<source src='video.ogv' type='video/ogg'>
+			</video>
+		</section>
+
+		<section class="block">
+			<h2>Поведение курсора для видео плеера с инверсией</h2>
+
+			<video class='video inverse' autoplay='autoplay' loop>
+				<source src='video.mp4' type='video/mp4'>
+				<source src='video.ogv' type='video/ogg'>
+			</video>
+		</section>
+
+		<section class='block slider'>
+			<h2>Поведение курсора для драгскролла</h2>
+			<div class='slider-list'>
+				<div class='slider-item light'></div>
+				<div class='slider-item light'></div>
+				<div class='slider-item light'></div>
+				<div class='slider-item light'></div>
+			</div>
+		</section>
+
+		<section class='block slider'>
+			<h2>Поведение курсора для драгскролла с инверсией</h2>
+
+			<div class='slider-list'>
+				<div class='slider-item dark inverse'></div>
+				<div class='slider-item dark inverse'></div>
+				<div class='slider-item dark inverse'></div>
+				<div class='slider-item dark inverse'></div>
+			</div>
+		</section>
+
+		<section class='block'>
+			<h2>Поведение курсора для аудио плеера</h2>
+			<div class="audio">
+				<div></div>
+				<audio controls>
+					<source src="audio.ogg" type="audio/ogg; codecs=vorbis">
+				</audio>
+				<div></div>
+			</div>
+		</section>
+
+		<section class='block inverse'>
+			<h2>Поведение курсора для аудио плеера с инверсией</h2>
+			<div class="audio">
+				<div></div>
+				<audio controls>
+					<source src="audio.ogg" type="audio/ogg; codecs=vorbis">
+				</audio>
+				<div></div>
+			</div>
+		</section>
+	</div>
+
+	<section class='block'>
+		<div class='dark-block block-inverse' style='padding: 30px; background: #000; width: 1200px; box-sizing: border-box; margin: 0 auto; height: 300px'>
+			<h2 style='color: #fff; font-size: 48px; line-height: 42px;'>Заголовок блока</h2>
+			<p style='color: #fff;'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur nulla iusto quidem
+				vero omnis
+				quia illum ipsam magni culpa porro. Id eaque tempora quibusdam dignissimos possimus molestias odio incidunt eum.
+			</p>
+		</div>
+	</section>
+
+		</div>
+	</div>
+
+<script src="libs/gsap/gsap.min.js" defer></script>
+<script src="libs/gsap/ScrollTrigger.min.js" defer></script>
+<script src="libs/gsap/ScrollSmoother.min.js" defer></script>
+<script src="main.js"></script>
+</body>
+
+</html>

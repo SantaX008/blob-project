@@ -1,0 +1,215 @@
+* {
+	cursor: none;
+}
+
+input,
+textarea {
+	cursor: text;
+}
+
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+h2 {
+	font-size: 32px;
+}
+
+p {
+	font-size: 18px;
+	line-height: 21px;
+}
+
+
+button {
+	border-style: solid;
+	border-color: #000;
+}
+
+.blob-item {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	z-index: 2
+}
+
+/* Decorate */
+.blob-item-decorate {
+	padding: 16px;
+	text-align: center;
+	background-color: #000000;
+	border-radius: 16px;
+	color: #FFFFFF;
+	margin: 16px;
+	width: 160px;
+}
+
+.blob-item > * {
+	z-index: 1;
+	position: relative
+}
+
+.blob-effect {
+	--effect-color: rgba(52, 84, 236, 1);
+
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	-webkit-transition: -webkit-transform .3s ease-in-out;
+	-o-transition: transform .3s ease-in-out;
+	transition: transform .3s ease-in-out;
+	background-color: var(--effect-color);
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+
+.cursor,
+.cursor span {
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+}
+
+.cursor.cursor-inverse {
+	mix-blend-mode: difference;
+	background: #fff;
+}
+.cursor.cursor-inverse span {
+	background: none;
+}
+
+.cursor {
+	top: -10px;
+	left: -10px;
+	position: fixed;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	z-index: 9999;
+	pointer-events: none;
+	-webkit-transition: z-index .05s .1s, -webkit-transform .05s;
+	-o-transition: transform .05s, z-index .05s .1s;
+	transition: transform .05s, z-index .05s .1s;
+}
+
+.cursor span {
+	background-position: center;
+	background-size: 50%;
+	background-repeat: no-repeat;
+	background-color: #000;
+	background-blend-mode: difference;
+	-webkit-transition: all .6s ease, transform .2s ease, background-position 0s ease, background-image 0s ease;
+	-o-transition: all .6s ease, transform .2s ease, background-position 0s ease, background-image 0s ease;
+	transition: all .6s ease, transform .2s ease, background-position 0s ease, background-image 0s ease;
+}
+
+.cursor.is-hidden {
+	z-index: -1
+}
+
+.cursor.is-hidden span {
+	-webkit-transform: scale(0);
+	-ms-transform: scale(0);
+	transform: scale(0);
+	background-color: #000;
+}
+
+.cursor.mute span,
+.cursor.unmute span,
+.cursor.play span,
+.cursor.pause span,
+.cursor.controls span {
+	-webkit-transform: scale(2.5);
+	-ms-transform: scale(2.5);
+	transform: scale(2.5);
+}
+
+.cursor.mute span {
+	background-image: url(img/video-mute.svg);
+}
+
+.cursor.unmute span {
+	background-image: url(img/video-unmute.svg);
+}
+
+.cursor.mute.inverse span {
+	background-color: #fff;
+}
+
+.cursor.unmute.inverse span {
+	background-color: #fff;
+}
+
+.cursor.play span {
+	background-image: url(img/play.svg);
+}
+
+.cursor.pause span {
+	background-image: url(img/pause.svg);
+}
+
+.cursor.controls span {
+	background-image: url(img/controls.svg);
+}
+
+.cursor.controls.inverse span,
+.cursor.play.inverse span,
+.cursor.pause.inverse span {
+	background-color: #fff;
+}
+
+/* Стили для темного и светлого курсора */
+
+.light {
+	background: #fff;
+	border: 1px solid #000;
+}
+
+.dark {
+	background: #000;
+}
+
+.video {
+	width: 100%;
+}
+
+.audio {
+	position: relative;
+	width: 50%;
+	height: 300px;
+	background: black;
+}
+
+.audio audio {
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+}
+
+.slider-list {
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+.slider-item {
+	height: 300px;
+	width: 25%;
+}
+
+.slider-item:not(:last-child) {
+	margin-right: 20px;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.block {
+	padding: 40px 0;
+}
