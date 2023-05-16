@@ -129,11 +129,11 @@ button {
 }
 
 .cursor.mute span {
-	background-image: url(img/video-mute.svg);
+	background-image: url(src/img/video-mute.svg);
 }
 
 .cursor.unmute span {
-	background-image: url(img/video-unmute.svg);
+	background-image: url(src/img/video-unmute.svg);
 }
 
 .cursor.mute.inverse span {
@@ -145,15 +145,15 @@ button {
 }
 
 .cursor.play span {
-	background-image: url(img/play.svg);
+	background-image: url(src/img/play.svg);
 }
 
 .cursor.pause span {
-	background-image: url(img/pause.svg);
+	background-image: url(src/img/pause.svg);
 }
 
 .cursor.controls span {
-	background-image: url(img/controls.svg);
+	background-image: url(src/img/controls.svg);
 }
 
 .cursor.controls.inverse span,
