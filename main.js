@@ -158,6 +158,12 @@ class BlobItem {
         this.init()
     }
 
+    _createBlobs(el) {
+        this._blob = document.createElement("span"),
+        this._blob.classList.add("blob-effect"),
+        this._blobLinks[el].appendChild(this._blob);
+    }
+
     _setParamBlob(e, leftOffset, topOffset) {
         var height = this._activeLink.getBoundingClientRect().height,
             width = this._activeLink.getBoundingClientRect().width,
@@ -198,10 +204,11 @@ class BlobItem {
 
     init() {
         var e = this;
-        this._blobLinks.length && this._blobLinks.forEach((function (el) {
+        this._blobLinks.length && this._blobLinks.forEach((function (el, i) {
                 el.addEventListener("mouseenter", e._onLinkMouseenter),
-                    el.addEventListener("mouseleave", e._onLinkMouseleave),
-                    document.body.addEventListener("touchstart", e._onTouchStart)
+                el.addEventListener("mouseleave", e._onLinkMouseleave),
+                document.body.addEventListener("touchstart", e._onTouchStart)
+                e._createBlobs(i)
             }
         ))
     }
@@ -223,12 +230,12 @@ class BlobItem {
 
             let leftOffset = e.clientX - this._activeLink.getBoundingClientRect().left - this._cursorOffset,
                 topOffset = e.clientY - this._activeLink.getBoundingClientRect().top - this._cursorOffset;
-
-            this._blob.style.left = `${leftOffset}px`;
-            this._blob.style.top = `${topOffset}px`;
-            this._blob.style.borderRadius = `${this._generateBorderRadius()}`;
-            this._blob.style.transition = `left ${this._left}s ease, top ${this._top}s ease, transform ${this._baseDelayCurrent}s ease`;
-            this._blob.style.transform = "scale(0.01)";
+            let blob = this._blob;
+            blob.style.left = `${leftOffset}px`;
+            blob.style.top = `${topOffset}px`;
+            blob.style.borderRadius = `${this._generateBorderRadius()}`;
+            blob.style.transition = `left ${this._left}s ease, top ${this._top}s ease, transform ${this._baseDelayCurrent}s ease`;
+            blob.style.transform = "scale(0.01)";
         }
     }
 }
