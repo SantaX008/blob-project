@@ -37,7 +37,7 @@ class CustomCursor {
     }
 
     _videoCursor(e) {
-        if (e.target.closest("video")) {
+        if (e.target.closest(".video")) {
             if (e.target.muted) {
                 this._cursor.classList.add('mute');
                 this._cursor.classList.remove('unmute');
@@ -92,7 +92,7 @@ new CustomCursor()
 
 class VideoSound {
     constructor() {
-        this._videos = document.querySelectorAll("video");
+        this._videos = document.querySelectorAll(".video");
         this.init();
     }
 

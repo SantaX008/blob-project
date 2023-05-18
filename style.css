@@ -56,16 +56,6 @@ button {
 	border-radius: inherit;
 }
 
-/* Decorate */
-.blob-item-decorate {
-	padding: 16px;
-	text-align: center;
-	border-radius: 16px;
-	color: #FFFFFF;
-	margin: 16px;
-	width: 160px;
-}
-
 .blob-item > * {
 	z-index: 1;
 	position: relative
@@ -94,6 +84,13 @@ button {
 	width: 20px;
 	height: 20px;
 	border-radius: 50%;
+}
+
+@media (max-width: 1024px) {
+	.cursor,
+	.cursor span {
+		display: none;
+	}
 }
 
 .cursor.cursor-inverse {
@@ -185,6 +182,16 @@ button {
 }
 
 /* Стили для темного и светлого курсора */
+
+/* Decorate */
+.blob-item-decorate {
+	padding: 16px;
+	text-align: center;
+	border-radius: 16px;
+	color: #FFFFFF;
+	margin: 16px;
+	width: 160px;
+}
 
 .light {
 	background: #fff;
