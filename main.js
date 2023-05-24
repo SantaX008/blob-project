@@ -25,13 +25,16 @@ class CustomCursor {
             this._cursor.classList.add("is-hidden");
         } else {
             this._cursor.classList.remove("is-hidden");
-            this._cursor.style.transform = `translate3D(${e.clientX}px, ${e.clientY}px, 0)`;
+            // this._cursor.style.transform = `translate3D(${e.clientX}px, ${e.clientY}px, 0)`;
+            this._cursor.style.left = `${e.clientX}px`;
+            this._cursor.style.top = `${e.clientY}px`;
 
             this._videoCursor(e);
             this._audioCursor(e);
             this._inverseCursor(e);
             this._sliderCursor(e);
             this._blockInverse(e);
+            this._arrowCursor(e);
         }
 
     }
@@ -70,6 +73,10 @@ class CustomCursor {
 
     _sliderCursor(e) {
         e.target.closest(".slider-item") ? this._cursor.classList.add('controls') : this._cursor.classList.remove('controls');
+    }
+
+    _arrowCursor(e) {
+        e.target.closest(".arrow") ? this._cursor.classList.add('arrow-cursor') : this._cursor.classList.remove('arrow-cursor');
     }
 
     _inverseCursor(e) {
