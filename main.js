@@ -35,6 +35,8 @@ class CustomCursor {
             this._sliderCursor(e);
             this._blockInverse(e);
             this._arrowCursor(e);
+            this._arrowTopCursor(e);
+            this._arrowBackCursor(e);
         }
 
     }
@@ -77,6 +79,14 @@ class CustomCursor {
 
     _arrowCursor(e) {
         e.target.closest(".arrow") ? this._cursor.classList.add('arrow-cursor') : this._cursor.classList.remove('arrow-cursor');
+    }
+
+    _arrowTopCursor(e) {
+        e.target.classList.contains("arrow-top") ? this._cursor.classList.add('arrow-top-cursor') && this._cursor.classList.remove('arrow-cursor') : this._cursor.classList.remove('arrow-top-cursor');
+    }
+
+    _arrowBackCursor(e) {
+        e.target === document.querySelector("body") ? this._cursor.classList.add('arrow-back-cursor') : this._cursor.classList.remove('arrow-back-cursor');
     }
 
     _inverseCursor(e) {
@@ -167,8 +177,8 @@ class BlobItem {
 
     _createBlobs(el) {
         this._blob = document.createElement("span"),
-        this._blob.classList.add("blob-effect"),
-        this._blobLinks[el].appendChild(this._blob);
+            this._blob.classList.add("blob-effect"),
+            this._blobLinks[el].appendChild(this._blob);
     }
 
     _setParamBlob(e, leftOffset, topOffset) {
@@ -213,8 +223,8 @@ class BlobItem {
         var e = this;
         this._blobLinks.length && this._blobLinks.forEach((function (el, i) {
                 el.addEventListener("mouseenter", e._onLinkMouseenter),
-                el.addEventListener("mouseleave", e._onLinkMouseleave),
-                document.body.addEventListener("touchstart", e._onTouchStart)
+                    el.addEventListener("mouseleave", e._onLinkMouseleave),
+                    document.body.addEventListener("touchstart", e._onTouchStart)
                 e._createBlobs(i)
             }
         ))
@@ -283,3 +293,100 @@ class Scroll {
 }
 
 new Scroll();
+
+document.querySelector('.arrow-top').addEventListener('click', function (event) {
+    event.target.matches('.arrow-top') ? goTop() : false;
+});
+
+
+function goTop() {
+    window.scrollBy(0, -50);
+    if (window.pageYOffset === 0) {
+        return;
+    }
+    setTimeout(goTop, 0);
+}
+
+class ItemCard {
+    constructor() {
+        this._items = document.getElementsByClassName('card-list__item');
+        this._onPointerMove = this._onPointerMove.bind(this);
+        this._onPointerLeave = this._onPointerLeave.bind(this);
+        this.init()
+    }
+
+    _onPointerMove(e) {
+        let itemWidth = e.target.clientWidth;
+        let itemHeight = e.target.clientHeight;
+        let offsetX;
+        let offsetY;
+        let positionX;
+        let positionY;
+        let oX;
+        let oY;
+        e.target.querySelector('.card-list__item-bg').style.translate = `transition: transform 0.25s linear, opacity 0.5s linear;`;
+
+        //old version
+        // if (e.offsetX <= itemWidth / 2) {
+        //     offsetX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) - ((itemWidth / 2) * 0.25);
+        //     offsetXX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) / 2;
+        //     positionX = (offsetXX / (itemWidth / 2 * 0.25) * 100);
+        // } else {
+        //     offsetX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) / 2;
+        //     positionX = (offsetX / (itemWidth / 2 * 0.25) * 100);
+        // }
+        //
+        // if (e.offsetY <= itemHeight / 2) {
+        //     offsetY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) - ((itemHeight / 2) * 0.25);
+        //     offsetYY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) / 2;
+        //     positionY = (offsetYY / (itemHeight / 2 * 0.25) * 100);
+        //
+        // } else {
+        //     offsetY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) / 2;
+        //     positionY = (offsetY / (itemHeight / 2 * 0.25) * 100);
+        // }
+        //
+        // e.target.querySelector('.card-list__item-bg').style.transform = `translate(${offsetX.toFixed(0)}px, ${offsetY.toFixed(0)}px) scale(.75)`;
+        // e.target.querySelector('.card-list__item-bg').style.backgroundPosition = `top ${positionY.toFixed(0)}% left ${positionX.toFixed(0)}%`;
+
+        //new version
+        oX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) - ((itemWidth / 2) * 0.25);
+        oY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) - ((itemHeight / 2) * 0.25);
+
+        offsetX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) / 2;
+        positionX = (offsetX / (itemWidth / 2 * 0.25) * 100);
+
+        offsetY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) / 2;
+        positionY = (offsetY / (itemHeight / 2 * 0.25) * 100);
+
+        e.target.querySelector('.card-list__item-bg').style.transform = `scale(.75)`;
+        e.target.querySelector('.card-list__item-bg').style.top = `${oY.toFixed(0)}px`;
+        e.target.querySelector('.card-list__item-bg').style.left = `${oX.toFixed(0)}px`;
+        e.target.querySelector('.card-list__item-bg').style.backgroundPosition = `top ${positionY.toFixed(0)}% left ${positionX.toFixed(0)}%`;
+    }
+
+    _onPointerEnter(e) {
+        e.target.classList.add('in');
+    }
+
+    _onPointerLeave() {
+        Array.prototype.forEach.call(this._items, function(item) {
+            item.classList.remove('in');
+            item.querySelector('.card-list__item-bg').style.transform = 'scale(0.5)';
+            item.querySelector('.card-list__item-bg').style.top = `0`;
+            item.querySelector('.card-list__item-bg').style.left = `0`;
+        });
+    }
+
+    init() {
+        let that = this;
+
+        Array.prototype.forEach.call(this._items, function(item) {
+            item.addEventListener("pointermove", that._onPointerMove);
+            item.addEventListener("pointerenter", that._onPointerEnter);
+            item.addEventListener("pointerleave", that._onPointerLeave)
+        });
+    }
+}
+
+new ItemCard();
