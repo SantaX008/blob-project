@@ -1,3 +1,33 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // var bitrixBtn = document.querySelector('.b24-form-btn');
+    // var btnText = document.createElement("span");
+
+    // btnText.textContent = "Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р С‘РЎвЂљРЎРЉ";
+    // bitrixBtn.appendChild(btnText);
+    // bitrixBtn.classList.add('blob-item');
+    // console.log(bitrixBtn);
+
+
+
+    var bitrixBtn = document.querySelectorAll('.b24-form-btn');
+
+    for (let index = 0; index < bitrixBtn.length; index++) {
+        var btnText = document.createElement("span");
+        btnText.textContent = "Р С›РЎвЂљР С—РЎР‚Р В°Р Р†Р С‘РЎвЂљРЎРЉ";
+
+        bitrixBtn[index].appendChild(btnText);
+        bitrixBtn[index].firstChild.data = "";
+        bitrixBtn[index].classList.add('blob-item');
+    }
+
+
+    new CustomCursor();
+    new VideoSound();
+    new AudioPlayPause();
+    new BlobItem();
+
+});
+
 class CustomCursor {
 
     constructor() {
@@ -104,8 +134,6 @@ class CustomCursor {
 
 }
 
-new CustomCursor()
-
 
 class VideoSound {
     constructor() {
@@ -125,7 +153,6 @@ class VideoSound {
     }
 }
 
-new VideoSound()
 
 class AudioPlayPause {
     constructor() {
@@ -147,7 +174,7 @@ class AudioPlayPause {
     }
 }
 
-new AudioPlayPause()
+
 
 class BlobItem {
 
@@ -162,15 +189,16 @@ class BlobItem {
 
             this._top = 0.1,
             this._left = 0.1,
-            this._baseDelay = .8,
+            this._baseDelay = 0.75,
             this._touchEvent = !1,
-            this._baseTheme = "#74F864",
+            this._baseTheme = "#3454EC",
             this._cursorSize = 20,
             this._cursorOffset = this._cursorSize / 2,
             this._onLinkMouseenter = this._onLinkMouseenter.bind(this),
             this._onLinkMouseleave = this._onLinkMouseleave.bind(this),
             this._onTouchStart = this._onTouchStart.bind(this),
             this._sizeCoefficient = 7;
+        this._brdColor = "#000000"
 
         this.init()
     }
@@ -192,7 +220,7 @@ class BlobItem {
         this._blob.style.left            = `${leftOffset}px`;
         this._blob.style.top             = `${topOffset}px`;
         this._blob.style.transform       = `scale(${maxSize / this._sizeCoefficientCurrent})`;
-        this._blob.style.transition      = `transform ${this._baseDelayCurrent}s ease-in-out`;
+        this._blob.style.transition      = `transform ${this._baseDelayCurrent}s ease`;
         this._blob.style.borderRadius    = `${this._generateBorderRadius()}`;
     }
 
@@ -251,13 +279,12 @@ class BlobItem {
             blob.style.left = `${leftOffset}px`;
             blob.style.top = `${topOffset}px`;
             blob.style.borderRadius = `${this._generateBorderRadius()}`;
-            blob.style.transition = `left ${this._left}s ease, top ${this._top}s ease, transform ${this._baseDelayCurrent}s ease`;
+            blob.style.transition = `left ${this._left}s ease-out, top ${this._top}s ease-out, transform ${this._baseDelayCurrent}s ease-out`;
             blob.style.transform = "scale(0.01)";
         }
     }
 }
 
-new BlobItem();
 
 
 class Scroll {
@@ -291,103 +318,3 @@ class Scroll {
         })
     }
 }
-
-new Scroll();
-
-document.querySelector('.arrow-top').addEventListener('click', function (event) {
-    event.target.matches('.arrow-top') ? goTop() : false;
-});
-
-
-function goTop() {
-    window.scrollBy(0, -50);
-    if (window.pageYOffset === 0) {
-        return;
-    }
-    setTimeout(goTop, 0);
-}
-
-class ItemCard {
-    constructor() {
-        this._items = document.getElementsByClassName('card-list__item');
-        this._onPointerMove = this._onPointerMove.bind(this);
-        this._onPointerLeave = this._onPointerLeave.bind(this);
-        this.init()
-    }
-
-    _onPointerMove(e) {
-        let itemWidth = e.target.clientWidth;
-        let itemHeight = e.target.clientHeight;
-        let offsetX;
-        let offsetY;
-        let positionX;
-        let positionY;
-        let oX;
-        let oY;
-        e.target.querySelector('.card-list__item-bg').style.translate = `transition: transform 0.25s linear, opacity 0.5s linear;`;
-
-        //old version
-        // if (e.offsetX <= itemWidth / 2) {
-        //     offsetX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) - ((itemWidth / 2) * 0.25);
-        //     offsetXX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) / 2;
-        //     positionX = (offsetXX / (itemWidth / 2 * 0.25) * 100);
-        // } else {
-        //     offsetX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) / 2;
-        //     positionX = (offsetX / (itemWidth / 2 * 0.25) * 100);
-        // }
-        //
-        // if (e.offsetY <= itemHeight / 2) {
-        //     offsetY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) - ((itemHeight / 2) * 0.25);
-        //     offsetYY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) / 2;
-        //     positionY = (offsetYY / (itemHeight / 2 * 0.25) * 100);
-        //
-        // } else {
-        //     offsetY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) / 2;
-        //     positionY = (offsetY / (itemHeight / 2 * 0.25) * 100);
-        // }
-        //
-        // e.target.querySelector('.card-list__item-bg').style.transform = `translate(${offsetX.toFixed(0)}px, ${offsetY.toFixed(0)}px) scale(.75)`;
-        // e.target.querySelector('.card-list__item-bg').style.backgroundPosition = `top ${positionY.toFixed(0)}% left ${positionX.toFixed(0)}%`;
-
-        //new version
-        oX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) - ((itemWidth / 2) * 0.25);
-        oY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) - ((itemHeight / 2) * 0.25);
-
-        offsetX = e.offsetX / ((itemWidth / 2) / ((itemWidth / 2) * 0.25)) / 2;
-        positionX = (offsetX / (itemWidth / 2 * 0.25) * 100);
-
-        offsetY = e.offsetY / ((itemHeight / 2) / ((itemHeight / 2) * 0.25)) / 2;
-        positionY = (offsetY / (itemHeight / 2 * 0.25) * 100);
-
-        e.target.querySelector('.card-list__item-bg').style.transform = `scale(.75)`;
-        e.target.querySelector('.card-list__item-bg').style.top = `${oY.toFixed(0)}px`;
-        e.target.querySelector('.card-list__item-bg').style.left = `${oX.toFixed(0)}px`;
-        e.target.querySelector('.card-list__item-bg').style.backgroundPosition = `top ${positionY.toFixed(0)}% left ${positionX.toFixed(0)}%`;
-    }
-
-    _onPointerEnter(e) {
-        e.target.classList.add('in');
-    }
-
-    _onPointerLeave() {
-        Array.prototype.forEach.call(this._items, function(item) {
-            item.classList.remove('in');
-            item.querySelector('.card-list__item-bg').style.transform = 'scale(0.5)';
-            item.querySelector('.card-list__item-bg').style.top = `0`;
-            item.querySelector('.card-list__item-bg').style.left = `0`;
-        });
-    }
-
-    init() {
-        let that = this;
-
-        Array.prototype.forEach.call(this._items, function(item) {
-            item.addEventListener("pointermove", that._onPointerMove);
-            item.addEventListener("pointerenter", that._onPointerEnter);
-            item.addEventListener("pointerleave", that._onPointerLeave)
-        });
-    }
-}
-
-new ItemCard();
-
