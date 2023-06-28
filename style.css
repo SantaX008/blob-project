@@ -1,5 +1,10 @@
-* {
-	cursor: none;
+/** {*/
+/*	cursor: none;*/
+/*}*/
+@media (min-width: 1023px) {
+	* {
+		cursor: none;
+	}
 }
 
 input,
@@ -10,6 +15,7 @@ textarea {
 body {
 	font-family: 'Roboto', sans-serif;
 	margin: 0;
+	background: #fff;
 }
 
 h2 {
@@ -129,17 +135,15 @@ button {
 }
 
 .cursor span {
-	display: block;
-	position: relative;
 	background-position: center;
 	background-size: 50%;
 	background-repeat: no-repeat;
 	background-color: #000;
 	background-blend-mode: difference;
-	-webkit-transition:  .6s ease, transform .4s ease;
-	-o-transition: all .6s ease, transform .4s ease;
-	transition: all .6s ease, transform .4s ease;
-	will-change: transform;
+	-webkit-transition: all .4s linear, transform .2s ease;
+	-o-transition: all .4s linear, transform .2s ease;
+	transition: all .4s linear, transform .2s ease;
+	will-change: trahsform;
 }
 
 .cursor span::after {
@@ -151,10 +155,10 @@ button {
 	background-size: 50%;
 	background-repeat: no-repeat;
 	display: block;
-	-webkit-transition: background-position 0s ease, background-image 0s ease, background-size 0s, opacity 0s ease;
-	-o-transition: background-position 0s ease, background-image 0s ease, background-size 0s, opacity 0s ease;
-	transition: background-position 0s ease, background-image 0s ease, background-size 0s, opacity 0s ease;
-	opacity: 0;
+	-webkit-transition: background-position 0s ease, background-image 0.1s ease, background-size 0s;
+	-o-transition: background-position 0s ease, background-image 0.1s ease, background-size 0s;
+	transition: background-position 0s ease, background-image 0.1s ease, background-size 0s;
+	transition-delay:  0s, 0s, 0s;
 }
 
 .cursor.is-hidden {
@@ -167,12 +171,12 @@ button {
 .cursor.play span,
 .cursor.pause span,
 .cursor.controls span,
-.arrow-cursor span,
-.arrow-top-cursor span,
-.arrow-back-cursor span {
-	-webkit-transform: scale(2.5);
-	-ms-transform: scale(2.5);
-	transform: scale(2.5);
+.cursor.arrow-cursor span,
+.cursor.arrow-top-cursor span,
+.cursor.arrow-back-cursor span {
+	-webkit-transform: scale(3);
+	-ms-transform: scale(3);
+	transform: scale(3);
 }
 
 .cursor.is-hidden span {
@@ -180,9 +184,9 @@ button {
 	-ms-transform: scale(0);
 	transform: scale(0);
 	background-color: #000;
-	-webkit-transition: all .6s ease, transform .2s ease;
-	-o-transition: all .6s ease, transform .2s ease;
-	transition: all .6s ease, transform .2s ease;
+	-webkit-transition: all .4s ease, transform .2s linear;
+	-o-transition: all .4s ease, transform .2s linear;
+	transition: all .4s ease, transform .2s linear;
 }
 
 .cursor.mute span::after,
@@ -193,11 +197,10 @@ button {
 .cursor.arrow-cursor span::after,
 .cursor.arrow-top-cursor span::after,
 .cursor.arrow-back-cursor span::after {
-	-webkit-transition: background-position 0s ease, background-image 0s ease, background-size 0s, opacity .2s ease;
-	-o-transition: background-position 0s ease, background-image 0s ease, background-size 0s, opacity .2s ease;
-	transition: background-position 0s ease, background-image 0s ease, background-size 0s, opacity .2s ease;
-	transition-delay: 0s, 0s, 0s, 0.4s;
-	opacity: 1;
+	-webkit-transition: background-position 0s ease, background-image 0.1s ease, background-size 0s;
+	-o-transition: background-position 0s ease, background-image 0.1s ease, background-size 0s;
+	transition: background-position 0s ease, background-image 0.1s ease, background-size 0s;
+	transition-delay:  0s, 0.2s, 0s;
 }
 
 .cursor.mute span::after {
@@ -220,10 +223,10 @@ button {
 	background-image: url(src/img/controls.svg);
 }
 
-.cursor.arrow-cursor span::after {
-	background-image: url(src/img/arrow.svg);
-	transform: rotate(-45deg);
-	transition: transform 0.2s ease;
+.cursor.arrow-cursor .icon {
+	opacity: 1;
+	transition: opacity 0.1s linear;
+	transition-delay: 0.2s;
 }
 
 .cursor.arrow-top-cursor span::after {
@@ -251,6 +254,23 @@ button {
 .cursor.unmute.inverse span::after,
 .cursor.mute.inverse span::after {
 	mix-blend-mode: difference;
+}
+
+.block-inverse .cursor span::after {
+	mix-blend-mode: difference;
+}
+
+.icon {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: 40px;
+	height: 40px;
+	opacity: 0;
+	background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEzLjM2MjMgMjcuNjQ3OUMxMy4wODMzIDI3LjkyNjggMTIuNjMxMSAyNy45MjY4IDEyLjM1MjEgMjcuNjQ3OUMxMi4wNzMyIDI3LjM2ODkgMTIuMDczMiAyNi45MTY3IDEyLjM1MjEgMjYuNjM3N0wyNi44NDcxIDEyLjE0MjhIMTEuNDI4NkMxMS4wMzQyIDEyLjE0MjggMTAuNzE0NCAxMS44MjMgMTAuNzE0NCAxMS40Mjg1QzEwLjcxNDQgMTEuMDM0IDExLjAzNDIgMTAuNzE0MiAxMS40Mjg2IDEwLjcxNDJIMjcuMTQyOUMyOC4zMjY0IDEwLjcxNDIgMjkuMjg1OCAxMS42NzM2IDI5LjI4NTggMTIuODU3MVYyOC41NzE0QzI5LjI4NTggMjguOTY1OCAyOC45NjU5IDI5LjI4NTcgMjguNTcxNSAyOS4yODU3QzI4LjE3NzEgMjkuMjg1NyAyNy44NTcyIDI4Ljk2NTggMjcuODU3MiAyOC41NzE0VjEzLjE1M0wxMy4zNjIzIDI3LjY0NzlaIiBmaWxsPSJibGFjayIvPgo8L3N2Zz4K);
+	background-repeat: no-repeat;
+	/*background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTYiIGhlaWdodD0iNTYiIHZpZXdCb3g9IjAgMCA1NiA1NiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTE4LjcwNzEgMzguNzA3MkMxOC4zMTY2IDM5LjA5NzYgMTcuNjgzNCAzOS4wOTc2IDE3LjI5MjkgMzguNzA3MkMxNi45MDI0IDM4LjMxNjYgMTYuOTAyNCAzNy42ODM0IDE3LjI5MjkgMzcuMjkyOEwzNy41ODU4IDE3SDE2QzE1LjQ0NzcgMTcgMTUgMTYuNTUyMyAxNSAxNkMxNSAxNS40NDc3IDE1LjQ0NzcgMTUgMTYgMTVIMzhDMzkuNjU2OCAxNSA0MSAxNi4zNDMxIDQxIDE4VjQwQzQxIDQwLjU1MjIgNDAuNTUyMiA0MSA0MCA0MUMzOS40NDc4IDQxIDM5IDQwLjU1MjIgMzkgNDBWMTguNDE0MkwxOC43MDcxIDM4LjcwNzJaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K)*/
 }
 
 /* Стили для темного и светлого курсора */
@@ -320,11 +340,11 @@ button {
 }
 
 .menu-top {
-	background: red;
+	background: #dbddda;
 }
 
 .menu-bottom {
-	background: green;
+	background: #dbddda;
 }
 
 /* card */

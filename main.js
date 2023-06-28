@@ -9,7 +9,8 @@ class CustomCursor {
     }
 
     _onPointerLeave() {
-        this._cursor.classList.add("is-hidden")
+        this._cursor.classList.add("is-hidden");
+        document.querySelector('body').classList.add('is-hidden');
     }
 
     _onPointerMove(e) {
@@ -24,6 +25,7 @@ class CustomCursor {
         if (isTarget || "touch" === e.pointerType) {
             this._cursor.classList.add("is-hidden");
         } else {
+            document.querySelector('body').classList.remove('is-hidden');
             this._cursor.classList.remove("is-hidden");
             // this._cursor.style.transform = `translate3D(${e.clientX}px, ${e.clientY}px, 0)`;
             this._cursor.style.left = `${e.clientX}px`;
